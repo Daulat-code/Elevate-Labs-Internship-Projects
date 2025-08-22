@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head(title='Login')"></head>
+<body>
+<div class="auth-box">
+<h2>Login</h2>
+<form th:action="@{/auth/login}" method="post">
+<label>Username <input name="username" required></label>
+<label>Password <input name="password" type="password" required></label>
+<button type="submit">Login</button>
+</form>
+<p><a th:href="@{/auth/register}">Create an account</a></p>
+</div>
+</body>
+</html>

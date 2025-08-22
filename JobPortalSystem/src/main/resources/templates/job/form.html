@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head(title='New Job')"></head>
+<body>
+<h2>Post a Job</h2>
+<form th:action="@{/jobs}" th:object="${job}" method="post">
+<label>Title <input th:field="*{title}" required></label>
+<label>Location <input th:field="*{location}" required></label>
+<label>Employment Type
+<select th:field="*{employmentType}">
+<option>FULL_TIME</option>
+<option>PART_TIME</option>
+<option>CONTRACT</option>
+</select>
+</label>
+<label>Salary Range <input th:field="*{salaryRange}"></label>
+<label>Description <textarea th:field="*{description}"></textarea></label>
+<button type="submit">Publish</button>
+</form>
+</body>
+</html>

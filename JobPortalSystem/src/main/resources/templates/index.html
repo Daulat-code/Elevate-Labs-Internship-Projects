@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="layout :: layout">
+<body>
+<section>
+<h2>Latest Jobs</h2>
+<div th:if="${#lists.isEmpty(jobs)}">No jobs found.</div>
+<div th:each="j : ${jobs}" style="border:1px solid #eee;padding:1rem;margin:.5rem 0;">
+<div style="display:flex;justify-content:space-between;align-items:center;">
+<div>
+<h3 th:text="${j.title}"></h3>
+<p th:text="${j.location}"></p>
+<small th:text="${j.employmentType}"></small>
+</div>
+<div>
+<form th:action="@{'/applications/apply/' + ${j.id}}" method="post">
+<button th:if="${#authorization.expression('hasRole(''APPLICANT'')')}">Apply</button>
+<a th:if="${#authorization.expression('hasRole(''EMPLOYER'')')}" th:href="@{'/jobs/my'}">Manage</a>
+</form>
+</div>
+</div>
+</div>
+</section>
+</body>
+</html>

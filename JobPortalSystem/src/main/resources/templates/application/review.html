@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head(title='Applications Review')"></head>
+<body>
+<h2>Applications — Incoming</h2>
+<table>
+<thead><tr><th>Job</th><th>Applicant</th><th>Applied</th><th>Status</th><th>Action</th></tr></thead>
+<tbody>
+<tr th:each="a : ${apps}">
+<td th:text="${a.job.title}"></td>
+<td th:text="${a.applicant.username}"></td>
+<td th:text="${a.appliedAt}"></td>
+<td th:text="${a.status}"></td>
+<td>
+<form th:action="@{'/applications/' + ${a.id} + '/status'}" method="post">
+<select name="status" th:with="statuses=${statuses}">
+<option th:each="s : ${statuses}" th:value="${s}" th:text="${s}"></option>
+</select>
+<button type="submit">Update</button>
+</form>
+</td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

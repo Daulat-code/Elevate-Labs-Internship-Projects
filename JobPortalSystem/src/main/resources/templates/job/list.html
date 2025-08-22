@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="layout :: layout">
+<body>
+<section>
+<h2>All Jobs</h2>
+
+
+<form th:action="@{/jobs}" method="get" style="display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1rem;">
+<input name="q" placeholder="Keyword" th:value="${search != null} ? ${search.q} : ''">
+<input name="loc" placeholder="Location" th:value="${search != null} ? ${search.loc} : ''">
+<select name="type">
+<option value="">Any type</option>
+<option th:selected="${search != null and search.type == 'FULL_TIME'}">FULL_TIME</option>
+<option th:selected="${search != null and search.type == 'PART_TIME'}">PART_TIME</option>
+<option th:selected="${search != null and search.type == 'CONTRACT'}">CONTRACT</option>
+</select>
+<button type="submit">Filter</button>
+</form>
+
+
+<div th:if="${#lists.isEmpty(jobs)}">No jobs found.</div>
+<div th:each="j : ${jobs}" style="border:1px solid #eee;padding:1rem;margin:.5rem 0;">
+<div style="display:flex;justify-content:space-between;align-items:center;gap:1rem;">
+<div>
+<h3 th:text="${j.title}"></h3>
+<p><span th:text="${j.location}"></span> • <span th:text="${j.employmentType}"></span></p>
+<small th:text="${#temporals.format(j.postedOn, 'dd MMM yyyy')}"></small>
+</div>
+<div>
+<form th:action="@{'/applications/apply/' + ${j.id}}" method="post">
+<textarea name="coverLetter" placeholder="Short cover letter (optional)" rows="2" style="min-width:260px"></textarea>
+<div style="text-align:right;margin-top:.25rem;">
+<button th:if="${#authorization.expression('hasRole(''APPLICANT'')')}">Apply</button>
+<a th:if="${#authorization.expression('hasRole(''EMPLOYER'')')}" th:href="@{'/jobs/my'}">Manage</a>
+</div>
+</form>
+</div>
+</div>
+</div>
+</section>
+</body>
+</html>

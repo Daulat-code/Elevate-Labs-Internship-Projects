@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head(title='My Jobs')"></head>
+<body>
+<h2>My Job Listings</h2>
+<table>
+<thead><tr><th>Title</th><th>Location</th><th>Type</th><th>Posted</th></tr></thead>
+<tbody>
+<tr th:each="j : ${jobs}">
+<td th:text="${j.title}"></td>
+<td th:text="${j.location}"></td>
+<td th:text="${j.employmentType}"></td>
+<td th:text="${j.postedOn}"></td>
+</tr>
+</tbody>
+</table>
+<p><a th:href="@{/applications/review}">Review Applications</a></p>
+</body>
+</html>

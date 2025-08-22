@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body th:fragment="navbar">
+<header style="display:flex;gap:1rem;align-items:center;justify-content:space-between;padding:0.75rem 1rem;border-bottom:1px solid #eee;">
+<a th:href="@{/}"><strong>JobPortal</strong></a>
+<form th:action="@{/}" method="get" style="display:flex;gap:0.5rem;">
+<input name="q" placeholder="Search jobs..." th:value="${search.q}">
+<input name="loc" placeholder="Location" th:value="${search.loc}">
+<select name="type">
+<option value="">Any type</option>
+<option>FULL_TIME</option>
+<option>PART_TIME</option>
+<option>CONTRACT</option>
+</select>
+<button type="submit">Search</button>
+</form>
+<div>
+<a th:if="${#authorization.expression('isAuthenticated()')}" th:text="${#authentication.name}"></a>
+<a th:if="${#authorization.expression('!isAuthenticated()')}" th:href="@{/auth/login}">Login</a>
+<a th:if="${#authorization.expression('!isAuthenticated()')}" th:href="@{/auth/register}">Register</a>
+<a th:if="${#authorization.expression('isAuthenticated()')}" th:href="@{/auth/logout}">Logout</a>
+</div>
+</header>
+</body>
+</html>

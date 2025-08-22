@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head(title='Job Portal')"></head>
+<body>
+<nav th:replace="fragments/navbar :: navbar"></nav>
+<div class="container" style="max-width:1000px;margin:1.5rem auto;">
+<div th:insert="~{::body}"></div>
+</div>
+</body>
+</html>
