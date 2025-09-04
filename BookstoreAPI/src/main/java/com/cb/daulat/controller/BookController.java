@@ -40,7 +40,7 @@ public class BookController {
         return service.bookList();
     }
 
-    @GetMapping("/search?authorId={id}")
+    @GetMapping("/search")
     public Page<BookDTO> search(
             @RequestParam(required = false) String q,
             @RequestParam(required = false) Long authorId,
