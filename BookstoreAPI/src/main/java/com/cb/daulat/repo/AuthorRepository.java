@@ -1,5 +1,8 @@
 package com.cb.daulat.repo;
 
-public class AuthorRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
 
+import com.cb.daulat.entity.AuthorEntity;
+
+public interface AuthorRepository extends JpaRepository<AuthorEntity, Long> {
 }

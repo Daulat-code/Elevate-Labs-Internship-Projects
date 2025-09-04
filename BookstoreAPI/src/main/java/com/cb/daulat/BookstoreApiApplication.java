@@ -1,4 +1,4 @@
-package com.cb.daulat.BookstoreAPI;
+package com.cb.daulat;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
