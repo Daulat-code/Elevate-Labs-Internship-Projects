@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Job Details</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+<div class="max-w-4xl mx-auto p-6">
+    <!-- Job Card -->
+    <div class="bg-white p-6 rounded-2xl shadow mb-6">
+        <h1 class="text-2xl font-bold text-gray-800 mb-2" th:text="${job.title}">Job Title</h1>
+        <p class="text-gray-600 mb-1">
+            <span th:text="${job.company}">Company Name</span> - 
+            <span th:text="${job.location}">Location</span>
+        </p>
+        <p class="text-sm text-gray-500 mb-4">Job Type: <span th:text="${job.jobType}">Full-time</span></p>
+        
+        <div class="mb-4">
+            <h2 class="font-semibold text-lg">Description</h2>
+            <p class="text-gray-700 whitespace-pre-line" th:text="${job.description}">
+                Job description goes here...
+            </p>
+        </div>
+
+        <div class="mb-4 grid grid-cols-2 gap-4">
+            <div>
+                <h2 class="font-semibold">Experience Required</h2>
+                <p th:text="${job.minExperience} + ' years'" class="text-gray-700">2 years</p>
+            </div>
+            <div>
+                <h2 class="font-semibold">Salary Range</h2>
+                <p class="text-gray-700">
+                    <span th:text="${job.salaryFrom}"></span> - 
+                    <span th:text="${job.salaryTo}"></span>
+                </p>
+            </div>
+        </div>
+
+        <!-- Apply Form -->
+        <form th:action="@{/applications/apply}" method="post" class="mt-4">
+            <input type="hidden" name="jobId" th:value="${job.id}">
+            <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
+                Apply Now
+            </button>
+        </form>
+    </div>
+
+    <!-- Back Button -->
+    <div>
+        <a th:href="@{/profile}" class="text-blue-600 hover:underline">← Back to Profile</a>
+    </div>
+</div>
+</body>
+</html>
