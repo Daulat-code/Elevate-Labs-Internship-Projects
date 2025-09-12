@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+
+<!-- Navbar -->
+<nav class="bg-blue-600 p-4 shadow-lg flex justify-between items-center">
+    <h1 class="text-white text-2xl font-bold">JobPortalSystem</h1>
+    <div class="flex items-center gap-4">
+        <!-- Profile Picture -->
+        <img th:if="${picture != null}"
+             th:src="${picture}"
+             alt="Profile"
+             class="w-10 h-10 rounded-full border-2 border-white shadow"/>
+
+        <span class="text-white">Welcome, <b th:text="${name}">User</b></span>
+        <form th:action="@{/logout}" method="post">
+    <button type="submit"
+            class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600">
+        Logout
+    </button>
+</form>
+    </div>
+   
+</nav>
+
+<!-- Main Content -->
+<div class="container mx-auto p-6">
+    <div class="bg-white p-8 rounded-2xl shadow-md text-center">
+        <h2 class="text-3xl font-bold text-gray-800 mb-4">
+            🎉 Hello, <span th:text="${name}">User</span>!
+        </h2>
+        <p class="text-gray-600 mb-6">
+            You are successfully logged in to your account.
+        </p>
+
+        <!-- Quick Actions -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <a href="/employerProfile"
+               class="bg-blue-500 text-white p-6 rounded-xl shadow hover:bg-blue-600 transition">
+                👤 View Profile
+            </a>
+            <a href="/settings"
+               class="bg-green-500 text-white p-6 rounded-xl shadow hover:bg-green-600 transition">
+                ⚙️ Settings
+            </a>
+            <a th:href="@{/createJob}" 
+	           class="text-white bg-blue-500 px-4 py-2 rounded-lg hover:bg-blue-600 transition">
+	            👤 Jobs
+        </a>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="bg-gray-800 text-gray-200 text-center py-4 mt-10">
+    <p>&copy; 2025 MyApp. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>

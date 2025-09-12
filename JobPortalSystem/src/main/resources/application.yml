@@ -1,0 +1,19 @@
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: Secureed
+            client-secret:  Secureed
+            scope: email, profile
+#          linkedin:
+#            client-id: YOUR_LINKEDIN_CLIENT_ID
+#            client-secret: YOUR_LINKEDIN_CLIENT_SECRET
+#            scope: r_liteprofile,r_emailaddress
+#        provider:
+#          linkedin:
+#            authorization-uri: https://www.linkedin.com/oauth/v2/authorization
+#            token-uri: https://www.linkedin.com/oauth/v2/accessToken
+#            user-info-uri: https://api.linkedin.com/v2/me
+#            user-name-attribute: id

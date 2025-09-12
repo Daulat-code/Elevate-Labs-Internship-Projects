@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Employer Profile</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+</head>
+<body class="bg-light">
+<div class="container mt-4">
+  <div class="card">
+    <div class="card-body">
+      <div class="d-flex align-items-center mb-3">
+        <div th:if="${employer.logoPath}">
+          <img th:src="@{${employer.logoPath}}" alt="logo" class="me-3" style="max-height:100px;">
+        </div>
+        <div>
+          <h3 th:text="${employer.companyName}">Company Name</h3>
+          <div><small class="text-muted" th:text="${employer.website}">website</small></div>
+        </div>
+      </div>
+
+      <h5>Description</h5>
+      <p th:text="${employer.companyDescription}">Description here</p>
+
+      <h6>Contact</h6>
+      <p>
+        <strong>Address:</strong> <span th:text="${employer.address}"></span><br/>
+        <strong>Phone:</strong> <span th:text="${employer.phone}"></span>
+      </p>
+
+      <a th:href="@{/employers/edit/{id}(id=${employer.id})}" class="btn btn-outline-primary">Edit Profile</a>
+    </div>
+  </div>
+</div>
+</body>
+</html>
